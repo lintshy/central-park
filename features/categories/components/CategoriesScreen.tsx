@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import { UserAvatarButton } from '../../../components/UserAvatarButton';
 import { theme } from '../../../theme';
 import { Category, RootStackParamList } from '../../../types';
 
@@ -43,9 +44,12 @@ export default function CategoriesScreen({ navigation, route }: Props) {
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn} hitSlop={8}>
-          <Text style={styles.backArrow}>‹</Text>
-        </TouchableOpacity>
+        <View style={styles.headerTop}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn} hitSlop={8}>
+            <Text style={styles.backArrow}>‹</Text>
+          </TouchableOpacity>
+          <UserAvatarButton size={36} />
+        </View>
         <Text style={styles.suburb}>{suburb.name}</Text>
         <Text style={styles.postcode}>Postcode {suburb.postcode}</Text>
       </View>
@@ -106,6 +110,7 @@ const styles = StyleSheet.create({
   cardLabel: { fontSize: 18, fontWeight: '700', color: theme.colors.textPrimary },
   cardDesc: { fontSize: 13, color: theme.colors.textSecondary, marginTop: 2 },
   cardArrow: { fontSize: 26, color: theme.colors.textTertiary, fontWeight: '300' },
-  backBtn: { marginBottom: 8, alignSelf: 'flex-start' },
+  headerTop: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
+  backBtn: { alignSelf: 'flex-start' },
   backArrow: { fontSize: 32, color: theme.colors.surface, lineHeight: 34 },
 });

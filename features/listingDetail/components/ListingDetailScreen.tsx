@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import SectionLabel from '../../../components/SectionLabel';
+import { UserAvatarButton } from '../../../components/UserAvatarButton';
 import { theme } from '../../../theme';
 import { RootStackParamList } from '../../../types';
 import MenuItemCard from './MenuItemCard';
@@ -45,6 +46,7 @@ export default function ListingDetailScreen({ navigation, route }: Props) {
           <Text style={styles.title} numberOfLines={2}>{listing.title}</Text>
           <Text style={styles.address}>{listing.address} · {listing.suburb}</Text>
         </View>
+        <UserAvatarButton size={36} />
       </View>
 
       <ScrollView

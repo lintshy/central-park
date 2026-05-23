@@ -1,13 +1,16 @@
 {
   "expo": {
+    "owner": "lintshy",
     "name": "central-park",
     "slug": "central-park",
+    "scheme": "central-park",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lintshy.centralpark"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,7 +31,9 @@
         {
           "locationWhenInUsePermission": "Central Park needs your location to find postcodes near you."
         }
-      ]
+      ],
+      "expo-web-browser",
+      "expo-secure-store"
     ]
   }
 }

@@ -11,6 +11,7 @@ import {
 
 import SectionLabel from '../../../components/SectionLabel';
 import SuburbRow from '../../../components/SuburbRow';
+import { UserAvatarButton } from '../../../components/UserAvatarButton';
 import { SUBURBS } from '../../../constants/suburbs';
 import { theme } from '../../../theme';
 import { Postcode, RootStackParamList, Suburb } from '../../../types';
@@ -60,7 +61,10 @@ export default function HomeScreen({ navigation }: Props) {
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       <View style={styles.header}>
-        <Text style={styles.appName}>Central Park</Text>
+        <View style={styles.headerTop}>
+          <Text style={styles.appName}>Central Park</Text>
+          <UserAvatarButton size={36} />
+        </View>
         <Text style={styles.tagline}>Your local community hub</Text>
       </View>
 
@@ -124,6 +128,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 60,
   },
+  headerTop: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
   appName: { color: theme.colors.surface, fontSize: 30, fontWeight: '800', letterSpacing: 0.5 },
   tagline: { color: theme.colors.primaryLight, fontSize: 14, marginTop: 4 },
   scroll: { flex: 1 },

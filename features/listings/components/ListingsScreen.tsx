@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useMemo, useState } from 'react';
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import { UserAvatarButton } from '../../../components/UserAvatarButton';
 import { LISTINGS } from '../../../constants/listings';
 import { theme } from '../../../theme';
 import { Category, RootStackParamList } from '../../../types';
@@ -42,12 +43,13 @@ export default function ListingsScreen({ navigation, route }: Props) {
           <Text style={styles.backArrow}>‹</Text>
         </TouchableOpacity>
         <Text style={styles.emoji}>{meta.emoji}</Text>
-        <View>
+        <View style={styles.headerText}>
           <Text style={styles.title}>{meta.label}</Text>
           <Text style={styles.subtitle}>
             {suburb.name} · {suburb.postcode}
           </Text>
         </View>
+        <UserAvatarButton size={36} />
       </View>
 
       <View style={styles.toggleRow}>
@@ -114,6 +116,7 @@ const styles = StyleSheet.create({
   toggleActive: { backgroundColor: theme.colors.primary },
   toggleText: { fontSize: 14, fontWeight: '600', color: theme.colors.textSecondary },
   toggleTextActive: { color: theme.colors.surface },
+  headerText: { flex: 1 },
   backBtn: { marginRight: 12 },
   backArrow: { fontSize: 32, color: theme.colors.surface, lineHeight: 34 },
 });
