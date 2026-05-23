@@ -1,5 +1,17 @@
 export type Postcode = '2769' | '2762';
 
+export interface PostcodeEntry {
+  code: Postcode;
+  label: string;
+  latitude: number;
+  longitude: number;
+}
+
+export interface NearbyResult {
+  entry: PostcodeEntry;
+  distanceKm: number;
+}
+
 export type Category = 'meals' | 'garage_sales' | 'activities';
 
 export interface Suburb {

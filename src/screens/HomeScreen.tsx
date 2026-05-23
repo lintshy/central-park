@@ -1,23 +1,46 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import {
-  FlatList,
+  ActivityIndicator,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 
-import { POSTCODES,SUBURBS } from '../data/suburbs';
+import SectionLabel from '../components/SectionLabel';
+import SuburbRow from '../components/SuburbRow';
+import { SUBURBS } from '../data/suburbs';
 import { Postcode, RootStackParamList, Suburb } from '../types';
+import GpsPromptCard from './home/GpsPromptCard';
+import NearbyPostcodeList from './home/NearbyPostcodeList';
+import PostcodeTypeahead from './home/PostcodeTypeahead';
+import { useNearestPostcodes } from './home/useNearestPostcodes';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
 };
 
+type Phase = 'gps_prompt' | 'gps_loading' | 'nearby' | 'typeahead';
+
+function derivePhase(
+  gpsStatus: 'idle' | 'loading' | 'ready' | 'denied' | 'error',
+  forceTypeahead: boolean,
+): Phase {
+  if (forceTypeahead) return 'typeahead';
+  if (gpsStatus === 'loading') return 'gps_loading';
+  if (gpsStatus === 'ready') return 'nearby';
+  if (gpsStatus === 'denied' || gpsStatus === 'error') return 'typeahead';
+  return 'gps_prompt';
+}
+
 export default function HomeScreen({ navigation }: Props) {
+  const [forceTypeahead, setForceTypeahead] = useState(false);
   const [selectedPostcode, setSelectedPostcode] = useState<Postcode | null>(null);
+  const [gpsState, requestGps] = useNearestPostcodes(3);
+
+  const phase = derivePhase(gpsState.status, forceTypeahead);
 
   const filteredSuburbs = selectedPostcode
     ? SUBURBS.filter((s) => s.postcode === selectedPostcode)
@@ -25,6 +48,10 @@ export default function HomeScreen({ navigation }: Props) {
 
   function handleSuburbPress(suburb: Suburb) {
     navigation.navigate('Categories', { suburb });
+  }
+
+  function handlePostcodeSelect(code: Postcode) {
+    setSelectedPostcode(code);
   }
 
   return (
@@ -36,129 +63,71 @@ export default function HomeScreen({ navigation }: Props) {
         <Text style={styles.tagline}>Your local community hub</Text>
       </View>
 
-      <View style={styles.body}>
-        <Text style={styles.sectionLabel}>Select your postcode</Text>
-
-        <View style={styles.postcodeRow}>
-          {POSTCODES.map((p) => (
-            <TouchableOpacity
-              key={p.code}
-              style={[
-                styles.postcodeCard,
-                selectedPostcode === p.code && styles.postcodeCardActive,
-              ]}
-              onPress={() => setSelectedPostcode(p.code as Postcode)}
-              activeOpacity={0.8}
-            >
-              <Text
-                style={[
-                  styles.postcodeCode,
-                  selectedPostcode === p.code && styles.postcodeTextActive,
-                ]}
-              >
-                {p.code}
-              </Text>
-              <Text
-                style={[
-                  styles.postcodeRegion,
-                  selectedPostcode === p.code && styles.postcodeTextActive,
-                ]}
-                numberOfLines={2}
-              >
-                {p.label.split('–')[1].trim()}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-
-        {selectedPostcode && (
-          <>
-            <Text style={styles.sectionLabel}>Select your suburb</Text>
-            <FlatList
-              data={filteredSuburbs}
-              keyExtractor={(item) => item.name}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.suburbItem}
-                  onPress={() => handleSuburbPress(item)}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.suburbName}>{item.name}</Text>
-                  <Text style={styles.suburbArrow}>›</Text>
-                </TouchableOpacity>
-              )}
-              style={styles.suburbList}
-            />
-          </>
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+      >
+        {phase === 'gps_prompt' && (
+          <GpsPromptCard
+            onRequestLocation={requestGps}
+            onSkip={() => setForceTypeahead(true)}
+          />
         )}
 
-        {!selectedPostcode && (
-          <View style={styles.hint}>
-            <Text style={styles.hintText}>
-              Choose a postcode above to explore meals, garage sales and local activities near you.
-            </Text>
+        {phase === 'gps_loading' && (
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" color="#1a5276" />
+            <Text style={styles.loadingText}>Finding your location…</Text>
           </View>
         )}
-      </View>
+
+        {phase === 'nearby' && (
+          <NearbyPostcodeList
+            results={gpsState.results}
+            selected={selectedPostcode}
+            onSelect={handlePostcodeSelect}
+            onSearchInstead={() => setForceTypeahead(true)}
+          />
+        )}
+
+        {phase === 'typeahead' && (
+          <PostcodeTypeahead
+            selected={selectedPostcode}
+            onSelect={handlePostcodeSelect}
+          />
+        )}
+
+        {selectedPostcode && filteredSuburbs.length > 0 && (
+          <View style={styles.suburbSection}>
+            <SectionLabel>Select your suburb</SectionLabel>
+            {filteredSuburbs.map((suburb) => (
+              <SuburbRow
+                key={suburb.name}
+                suburb={suburb}
+                onPress={() => handleSuburbPress(suburb)}
+              />
+            ))}
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f4f6fb' },
+  container: { backgroundColor: '#f4f6fb', flex: 1 },
   header: {
     backgroundColor: '#1a5276',
-    paddingTop: 60,
     paddingBottom: 28,
     paddingHorizontal: 24,
+    paddingTop: 60,
   },
-  appName: { fontSize: 30, fontWeight: '800', color: '#fff', letterSpacing: 0.5 },
-  tagline: { fontSize: 14, color: '#aed6f1', marginTop: 4 },
-  body: { flex: 1, paddingHorizontal: 20, paddingTop: 24 },
-  sectionLabel: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#7f8c8d',
-    letterSpacing: 1,
-    textTransform: 'uppercase',
-    marginBottom: 12,
-  },
-  postcodeRow: { flexDirection: 'row', gap: 12, marginBottom: 28 },
-  postcodeCard: {
-    flex: 1,
-    borderRadius: 14,
-    backgroundColor: '#fff',
-    padding: 16,
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#e8eaf0',
-    shadowColor: '#000',
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
-  },
-  postcodeCardActive: { borderColor: '#1a5276', backgroundColor: '#1a5276' },
-  postcodeCode: { fontSize: 26, fontWeight: '800', color: '#1a5276' },
-  postcodeRegion: { fontSize: 11, color: '#7f8c8d', marginTop: 4, textAlign: 'center' },
-  postcodeTextActive: { color: '#fff' },
-  suburbList: { flex: 1 },
-  suburbItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 18,
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
-  },
-  suburbName: { flex: 1, fontSize: 16, fontWeight: '600', color: '#1c2833' },
-  suburbArrow: { fontSize: 22, color: '#aed6f1', fontWeight: '300' },
-  hint: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 },
-  hintText: { fontSize: 15, color: '#aab7b8', textAlign: 'center', lineHeight: 22 },
+  appName: { color: '#fff', fontSize: 30, fontWeight: '800', letterSpacing: 0.5 },
+  tagline: { color: '#aed6f1', fontSize: 14, marginTop: 4 },
+  scroll: { flex: 1 },
+  scrollContent: { padding: 20, paddingBottom: 40 },
+  loading: { alignItems: 'center', paddingTop: 60, gap: 16 },
+  loadingText: { color: '#7f8c8d', fontSize: 15 },
+  suburbSection: { marginTop: 24 },
 });

@@ -1,4 +1,4 @@
-import { Suburb } from '../types';
+import { PostcodeEntry, Suburb } from '../types';
 
 export const SUBURBS: Suburb[] = [
   { name: 'Marsden Park', postcode: '2769' },
@@ -9,7 +9,7 @@ export const SUBURBS: Suburb[] = [
   { name: 'Riverstone', postcode: '2762' },
 ];
 
-export const POSTCODES: { code: string; label: string }[] = [
-  { code: '2769', label: '2769 – Marsden Park area' },
-  { code: '2762', label: '2762 – Schofields area' },
+export const POSTCODES: PostcodeEntry[] = [
+  { code: '2769', label: '2769 – Marsden Park area', latitude: -33.7177, longitude: 150.8704 },
+  { code: '2762', label: '2762 – Schofields area', latitude: -33.7281, longitude: 150.8785 },
 ];
