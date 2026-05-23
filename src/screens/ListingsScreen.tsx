@@ -30,7 +30,7 @@ const CATEGORY_META: Record<Category, { label: string; emoji: string; color: str
 
 type ViewMode = 'list' | 'map';
 
-export default function ListingsScreen({ route }: Props) {
+export default function ListingsScreen({ navigation, route }: Props) {
   const { category, suburb } = route.params;
   const [viewMode, setViewMode] = useState<ViewMode>('list');
 
@@ -46,6 +46,9 @@ export default function ListingsScreen({ route }: Props) {
       <StatusBar barStyle="light-content" backgroundColor="#1a5276" />
 
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn} hitSlop={8}>
+          <Text style={styles.backArrow}>‹</Text>
+        </TouchableOpacity>
         <Text style={styles.emoji}>{meta.emoji}</Text>
         <View>
           <Text style={styles.title}>{meta.label}</Text>
@@ -202,6 +205,8 @@ const styles = StyleSheet.create({
   listContent: { paddingHorizontal: 16, paddingBottom: 24 },
   empty: { paddingTop: 60, alignItems: 'center' },
   emptyText: { color: '#aab7b8', fontSize: 15 },
+  backBtn: { marginRight: 12 },
+  backArrow: { fontSize: 32, color: '#fff', lineHeight: 34 },
 });
 
 const mapStyles = StyleSheet.create({

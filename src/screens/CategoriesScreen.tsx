@@ -41,6 +41,9 @@ export default function CategoriesScreen({ navigation, route }: Props) {
       <StatusBar barStyle="light-content" backgroundColor="#1a5276" />
 
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn} hitSlop={8}>
+          <Text style={styles.backArrow}>‹</Text>
+        </TouchableOpacity>
         <Text style={styles.suburb}>{suburb.name}</Text>
         <Text style={styles.postcode}>Postcode {suburb.postcode}</Text>
       </View>
@@ -101,4 +104,6 @@ const styles = StyleSheet.create({
   cardLabel: { fontSize: 18, fontWeight: '700', color: '#1c2833' },
   cardDesc: { fontSize: 13, color: '#7f8c8d', marginTop: 2 },
   cardArrow: { fontSize: 26, color: '#aab7b8', fontWeight: '300' },
+  backBtn: { marginBottom: 8, alignSelf: 'flex-start' },
+  backArrow: { fontSize: 32, color: '#fff', lineHeight: 34 },
 });
