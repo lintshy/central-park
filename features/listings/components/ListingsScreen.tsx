@@ -1,12 +1,12 @@
 import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useMemo,useState } from 'react';
-import { StatusBar,StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { LISTINGS } from '../data/listings';
-import { Category,RootStackParamList } from '../types';
-import ListView from './listings/ListView';
-import MapView from './listings/MapView';
+import { LISTINGS } from '../../../constants/listings';
+import { Category, RootStackParamList } from '../../../types';
+import ListView from './ListView';
+import MapView from './MapView';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Listings'>;
@@ -29,7 +29,7 @@ export default function ListingsScreen({ navigation, route }: Props) {
 
   const listings = useMemo(
     () => LISTINGS.filter((l) => l.category === category && l.postcode === suburb.postcode),
-    [category, suburb.postcode]
+    [category, suburb.postcode],
   );
 
   return (

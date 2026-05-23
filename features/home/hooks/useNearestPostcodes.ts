@@ -1,8 +1,8 @@
 import * as Location from 'expo-location';
 import { useCallback, useState } from 'react';
 
-import { POSTCODES } from '../../data/suburbs';
-import { NearbyResult } from '../../types';
+import { POSTCODES } from '../../../constants/suburbs';
+import { NearbyResult } from '../../../types';
 
 type Status = 'idle' | 'loading' | 'ready' | 'denied' | 'error';
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import SectionLabel from '../../components/SectionLabel';
-import { POSTCODES } from '../../data/suburbs';
-import { Postcode, PostcodeEntry } from '../../types';
+import SectionLabel from '../../../components/SectionLabel';
+import { POSTCODES } from '../../../constants/suburbs';
+import { Postcode, PostcodeEntry } from '../../../types';
 
 type Props = {
   selected: Postcode | null;

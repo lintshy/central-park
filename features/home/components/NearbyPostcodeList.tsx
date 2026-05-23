@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import PostcodeChip from '../../components/PostcodeChip';
-import SectionLabel from '../../components/SectionLabel';
-import { NearbyResult, Postcode } from '../../types';
+import PostcodeChip from '../../../components/PostcodeChip';
+import SectionLabel from '../../../components/SectionLabel';
+import { NearbyResult, Postcode } from '../../../types';
 
 type Props = {
   results: NearbyResult[];

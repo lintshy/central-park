@@ -1,9 +1,9 @@
 import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { StatusBar,StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { Category,RootStackParamList } from '../types';
+import { Category, RootStackParamList } from '../../../types';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Categories'>;

@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { FlatList, Platform,StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import ListingCard from '../../components/ListingCard';
-import { Listing } from '../../types';
+import ListingCard from '../../../components/ListingCard';
+import { Listing } from '../../../types';
 
 type Props = {
   listings: Listing[];

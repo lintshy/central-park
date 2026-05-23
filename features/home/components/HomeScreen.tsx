@@ -9,14 +9,14 @@ import {
   View,
 } from 'react-native';
 
-import SectionLabel from '../components/SectionLabel';
-import SuburbRow from '../components/SuburbRow';
-import { SUBURBS } from '../data/suburbs';
-import { Postcode, RootStackParamList, Suburb } from '../types';
-import GpsPromptCard from './home/GpsPromptCard';
-import NearbyPostcodeList from './home/NearbyPostcodeList';
-import PostcodeTypeahead from './home/PostcodeTypeahead';
-import { useNearestPostcodes } from './home/useNearestPostcodes';
+import SectionLabel from '../../../components/SectionLabel';
+import SuburbRow from '../../../components/SuburbRow';
+import { SUBURBS } from '../../../constants/suburbs';
+import { Postcode, RootStackParamList, Suburb } from '../../../types';
+import { useNearestPostcodes } from '../hooks/useNearestPostcodes';
+import GpsPromptCard from './GpsPromptCard';
+import NearbyPostcodeList from './NearbyPostcodeList';
+import PostcodeTypeahead from './PostcodeTypeahead';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   tagline: { color: '#aed6f1', fontSize: 14, marginTop: 4 },
   scroll: { flex: 1 },
   scrollContent: { padding: 20, paddingBottom: 40 },
-  loading: { alignItems: 'center', paddingTop: 60, gap: 16 },
+  loading: { alignItems: 'center', gap: 16, paddingTop: 60 },
   loadingText: { color: '#7f8c8d', fontSize: 15 },
   suburbSection: { marginTop: 24 },
 });

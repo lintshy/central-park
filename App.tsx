@@ -1,10 +1,11 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStackParamList } from './src/types';
-import HomeScreen from './src/screens/HomeScreen';
-import CategoriesScreen from './src/screens/CategoriesScreen';
-import ListingsScreen from './src/screens/ListingsScreen';
+import React from 'react';
+
+import CategoriesScreen from './features/categories/components/CategoriesScreen';
+import HomeScreen from './features/home/components/HomeScreen';
+import ListingsScreen from './features/listings/components/ListingsScreen';
+import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

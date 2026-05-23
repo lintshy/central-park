@@ -1,8 +1,8 @@
 import React from 'react';
-import { FlatList, StyleSheet,Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-import ListingCard from '../../components/ListingCard';
-import { Listing } from '../../types';
+import ListingCard from '../../../components/ListingCard';
+import { Listing } from '../../../types';
 
 type Props = {
   listings: Listing[];
