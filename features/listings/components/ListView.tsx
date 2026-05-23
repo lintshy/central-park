@@ -7,14 +7,17 @@ import { Listing } from '../../../types';
 type Props = {
   listings: Listing[];
   accentColor: string;
+  onPressItem: (listing: Listing) => void;
 };
 
-export default function ListView({ listings, accentColor }: Props) {
+export default function ListView({ listings, accentColor, onPressItem }: Props) {
   return (
     <FlatList
       data={listings}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <ListingCard listing={item} accentColor={accentColor} />}
+      renderItem={({ item }) => (
+        <ListingCard listing={item} accentColor={accentColor} onPress={() => onPressItem(item)} />
+      )}
       contentContainerStyle={styles.listContent}
       ListEmptyComponent={
         <View style={styles.empty}>

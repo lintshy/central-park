@@ -17,6 +17,13 @@ export const LISTINGS: Listing[] = [
     time: '6:00 PM – 8:00 PM',
     host: 'Priya S.',
     tags: ['Indian', 'Halal', 'Gluten-free option'],
+    isAcceptingOrders: false,
+    menuItems: [
+      { id: 'm1-1', name: 'Chicken Biryani', description: 'Aromatic basmati with saffron & whole spices', priceAud: 18, thumbnailUrl: 'https://picsum.photos/seed/biryani1/80/80' },
+      { id: 'm1-2', name: 'Vegetarian Biryani', description: 'Seasonal vegetables, basmati, saffron', priceAud: 15, thumbnailUrl: 'https://picsum.photos/seed/biryani2/80/80' },
+      { id: 'm1-3', name: 'Raita', description: 'Cooling yoghurt & cucumber dip', priceAud: 3, thumbnailUrl: 'https://picsum.photos/seed/raita1/80/80' },
+      { id: 'm1-4', name: 'Mango Lassi', description: 'Fresh mango blended with yoghurt', priceAud: 5, thumbnailUrl: 'https://picsum.photos/seed/lassi1/80/80' },
+    ],
   },
   {
     id: 'm2',
@@ -33,6 +40,13 @@ export const LISTINGS: Listing[] = [
     time: '12:00 PM – 3:00 PM',
     host: 'Rima K.',
     tags: ['Lebanese', 'Vegetarian', 'Halal'],
+    isAcceptingOrders: true,
+    menuItems: [
+      { id: 'm2-1', name: 'Mezze Platter (serves 2)', description: 'Hummus, tabbouleh, falafel, pita & baba ganoush', priceAud: 22, thumbnailUrl: 'https://picsum.photos/seed/mezze1/80/80' },
+      { id: 'm2-2', name: 'Falafel Wrap', description: 'Crispy falafel, garlic sauce, pickled veg', priceAud: 10, thumbnailUrl: 'https://picsum.photos/seed/falafel1/80/80' },
+      { id: 'm2-3', name: 'Hummus & Pita', description: 'House hummus with warm pita bread', priceAud: 8, thumbnailUrl: 'https://picsum.photos/seed/hummus1/80/80' },
+      { id: 'm2-4', name: 'Baklava (4 pcs)', description: 'Honey, pistachio & filo pastry', priceAud: 6, thumbnailUrl: 'https://picsum.photos/seed/baklava1/80/80' },
+    ],
   },
   {
     id: 'm3',
@@ -49,6 +63,12 @@ export const LISTINGS: Listing[] = [
     time: '1:00 PM – 3:00 PM',
     host: 'Margaret T.',
     tags: ['Australian', 'Family-style'],
+    isAcceptingOrders: false,
+    menuItems: [
+      { id: 'm3-1', name: 'Sunday Roast (adult)', description: 'Lamb, roast veg, gravy & Yorkshire pudding', priceAud: 20, thumbnailUrl: 'https://picsum.photos/seed/roast1/80/80' },
+      { id: 'm3-2', name: 'Sunday Roast (kids)', description: 'Smaller serve with apple juice', priceAud: 12, thumbnailUrl: 'https://picsum.photos/seed/roast2/80/80' },
+      { id: 'm3-3', name: 'Extra Yorkshire Pudding', description: 'Two per serve', priceAud: 4, thumbnailUrl: 'https://picsum.photos/seed/yorkshire1/80/80' },
+    ],
   },
   // ── Home Meals – 2762 ──────────────────────────────────────────────────────
   {
@@ -66,6 +86,13 @@ export const LISTINGS: Listing[] = [
     time: '5:30 PM – 7:30 PM',
     host: 'Nong P.',
     tags: ['Thai', 'Spicy option', 'Nut-free on request'],
+    isAcceptingOrders: true,
+    menuItems: [
+      { id: 'm4-1', name: 'Pad Thai Box', description: 'Rice noodles, prawns, egg, tamarind sauce', priceAud: 16, thumbnailUrl: 'https://picsum.photos/seed/padthai1/80/80' },
+      { id: 'm4-2', name: 'Green Curry with Rice', description: 'Coconut milk, Thai basil, jasmine rice', priceAud: 15, thumbnailUrl: 'https://picsum.photos/seed/curry1/80/80' },
+      { id: 'm4-3', name: 'Spring Rolls (4 pcs)', description: 'Crispy fried with sweet chilli dip', priceAud: 8, thumbnailUrl: 'https://picsum.photos/seed/springrolls1/80/80' },
+      { id: 'm4-4', name: 'Thai Iced Tea', description: 'Sweetened black tea with condensed milk', priceAud: 5, thumbnailUrl: 'https://picsum.photos/seed/thaitea1/80/80' },
+    ],
   },
   {
     id: 'm5',
@@ -82,6 +109,13 @@ export const LISTINGS: Listing[] = [
     time: '11:00 AM – 2:00 PM',
     host: 'Maria L.',
     tags: ['Filipino', 'Home-cooked'],
+    isAcceptingOrders: true,
+    menuItems: [
+      { id: 'm5-1', name: 'Adobo Chicken Plate', description: 'Soy-vinegar braised chicken, sinangag rice', priceAud: 17, thumbnailUrl: 'https://picsum.photos/seed/adobo1/80/80' },
+      { id: 'm5-2', name: 'Pancit Bihon', description: 'Rice noodles with vegetables & chicken', priceAud: 14, thumbnailUrl: 'https://picsum.photos/seed/pancit1/80/80' },
+      { id: 'm5-3', name: 'Lumpia (4 pcs)', description: 'Crispy Filipino spring rolls', priceAud: 8, thumbnailUrl: 'https://picsum.photos/seed/lumpia1/80/80' },
+      { id: 'm5-4', name: 'Halo-Halo', description: 'Shaved ice dessert with ube, beans & flan', priceAud: 7, thumbnailUrl: 'https://picsum.photos/seed/halohalo1/80/80' },
+    ],
   },
   {
     id: 'm6',
@@ -98,6 +132,12 @@ export const LISTINGS: Listing[] = [
     time: '12:00 PM – 2:00 PM',
     host: 'Jess M.',
     tags: ['Vegan', 'Gluten-free', 'Organic'],
+    isAcceptingOrders: false,
+    menuItems: [
+      { id: 'm6-1', name: 'Signature Vegan Bowl', description: 'Roasted veg, quinoa, tahini & pickled cabbage', priceAud: 14, thumbnailUrl: 'https://picsum.photos/seed/veganbowl1/80/80' },
+      { id: 'm6-2', name: 'Add Protein', description: 'Baked tofu or tempeh', priceAud: 4, thumbnailUrl: 'https://picsum.photos/seed/tofu1/80/80' },
+      { id: 'm6-3', name: 'Kombucha', description: 'House-brewed ginger & lemon', priceAud: 5, thumbnailUrl: 'https://picsum.photos/seed/kombucha1/80/80' },
+    ],
   },
 
   // ── Garage Sales – 2769 ───────────────────────────────────────────────────

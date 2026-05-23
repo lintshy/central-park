@@ -19,6 +19,14 @@ export interface Suburb {
   postcode: Postcode;
 }
 
+export interface MenuItem {
+  id: string;
+  name: string;
+  description?: string;
+  priceAud: number;
+  thumbnailUrl?: string;
+}
+
 export interface Listing {
   id: string;
   title: string;
@@ -36,10 +44,13 @@ export interface Listing {
   tags?: string[];
   host?: string;
   contact?: string;
+  isAcceptingOrders?: boolean;
+  menuItems?: MenuItem[];
 }
 
 export type RootStackParamList = {
   Home: undefined;
   Categories: { suburb: Suburb };
   Listings: { category: Category; suburb: Suburb };
+  ListingDetail: { listing: Listing; accentColor: string };
 };

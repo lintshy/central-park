@@ -4,6 +4,7 @@ import React from 'react';
 
 import CategoriesScreen from './features/categories/components/CategoriesScreen';
 import HomeScreen from './features/home/components/HomeScreen';
+import ListingDetailScreen from './features/listingDetail/components/ListingDetailScreen';
 import ListingsScreen from './features/listings/components/ListingsScreen';
 import { RootStackParamList } from './types';
 
@@ -22,6 +23,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Categories" component={CategoriesScreen} />
         <Stack.Screen name="Listings" component={ListingsScreen} />
+        <Stack.Screen name="ListingDetail" component={ListingDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

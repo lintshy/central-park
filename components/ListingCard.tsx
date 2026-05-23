@@ -6,11 +6,12 @@ import { Listing } from '../types';
 type Props = {
   listing: Listing;
   accentColor: string;
+  onPress?: () => void;
 };
 
-export default function ListingCard({ listing, accentColor }: Props) {
+export default function ListingCard({ listing, accentColor, onPress }: Props) {
   return (
-    <TouchableOpacity style={styles.card} activeOpacity={0.85}>
+    <TouchableOpacity style={styles.card} activeOpacity={onPress ? 0.85 : 1} onPress={onPress}>
       <View style={[styles.accentBar, { backgroundColor: accentColor }]} />
       <View style={styles.content}>
         <Text style={styles.title} numberOfLines={2}>

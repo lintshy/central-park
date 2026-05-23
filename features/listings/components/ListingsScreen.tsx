@@ -69,7 +69,13 @@ export default function ListingsScreen({ navigation, route }: Props) {
       </View>
 
       {viewMode === 'list' ? (
-        <ListView listings={listings} accentColor={meta.color} />
+        <ListView
+          listings={listings}
+          accentColor={meta.color}
+          onPressItem={(listing) =>
+            navigation.navigate('ListingDetail', { listing, accentColor: meta.color })
+          }
+        />
       ) : (
         <MapView listings={listings} accentColor={meta.color} />
       )}
