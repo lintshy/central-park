@@ -6,6 +6,7 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { LoginScreen } from './features/auth/components/LoginScreen';
 import { useAuthStore } from './features/auth/store/authStore';
 import CategoriesScreen from './features/categories/components/CategoriesScreen';
+import ProfileScreen from './features/profile/components/ProfileScreen';
 import HomeScreen from './features/home/components/HomeScreen';
 import ListingDetailScreen from './features/listingDetail/components/ListingDetailScreen';
 import ListingsScreen from './features/listings/components/ListingsScreen';
@@ -48,6 +49,7 @@ export default function App(): React.JSX.Element {
         <Stack.Screen name="Categories" component={CategoriesScreen} />
         <Stack.Screen name="Listings" component={ListingsScreen} />
         <Stack.Screen name="ListingDetail" component={ListingDetailScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

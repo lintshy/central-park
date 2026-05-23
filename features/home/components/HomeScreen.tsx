@@ -1,5 +1,5 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   ScrollView,
@@ -12,6 +12,7 @@ import {
 import SectionLabel from '../../../components/SectionLabel';
 import SuburbRow from '../../../components/SuburbRow';
 import { UserAvatarButton } from '../../../components/UserAvatarButton';
+import { useAuthStore } from '../../auth/store/authStore';
 import { SUBURBS } from '../../../constants/suburbs';
 import { theme } from '../../../theme';
 import { Postcode, RootStackParamList, Suburb } from '../../../types';
@@ -41,6 +42,15 @@ export default function HomeScreen({ navigation }: Props) {
   const [forceTypeahead, setForceTypeahead] = useState(false);
   const [selectedPostcode, setSelectedPostcode] = useState<Postcode | null>(null);
   const [gpsState, requestGps] = useNearestPostcodes(3);
+  const savedSuburb = useAuthStore((state) => state.suburb);
+  const setSuburb = useAuthStore((state) => state.setSuburb);
+
+  // Skip suburb selection for returning users
+  useEffect(() => {
+    if (savedSuburb !== null) {
+      navigation.replace('Categories', { suburb: savedSuburb });
+    }
+  }, [savedSuburb, navigation]);
 
   const phase = derivePhase(gpsState.status, forceTypeahead);
 
@@ -49,12 +59,16 @@ export default function HomeScreen({ navigation }: Props) {
     : [];
 
   function handleSuburbPress(suburb: Suburb) {
+    void setSuburb(suburb);
     navigation.navigate('Categories', { suburb });
   }
 
   function handlePostcodeSelect(code: Postcode) {
     setSelectedPostcode(code);
   }
+
+  // Render nothing while navigating away to avoid a flash
+  if (savedSuburb !== null) return null;
 
   return (
     <View style={styles.container}>

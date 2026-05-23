@@ -16,15 +16,16 @@ import { UserAvatar } from './UserAvatar';
 interface Props {
   visible: boolean;
   onClose: () => void;
+  onNavigateToProfile: () => void;
 }
 
 const PANEL_WIDTH = 280;
 
-export function Sidebar({ visible, onClose }: Props): React.JSX.Element | null {
+export function Sidebar({ visible, onClose, onNavigateToProfile }: Props): React.JSX.Element | null {
   const [shouldRender, setShouldRender] = useState(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const slideX = useRef(new Animated.Value(PANEL_WIDTH)).current;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const fade = useRef(new Animated.Value(0)).current;
   const user = useAuthStore((state) => state.user);
   const signOut = useAuthStore((state) => state.signOut);
@@ -44,8 +45,8 @@ export function Sidebar({ visible, onClose }: Props): React.JSX.Element | null {
         if (finished) setShouldRender(false);
       });
     }
-  // slideX and fade are stable Animated.Value refs — intentionally omitted from deps
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // slideX and fade are stable Animated.Value refs — intentionally omitted from deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
   function handleSignOut(): void {
@@ -77,9 +78,9 @@ export function Sidebar({ visible, onClose }: Props): React.JSX.Element | null {
 
           <View style={styles.divider} />
 
-          <TouchableOpacity style={[styles.menuItem, styles.menuItemDisabled]} disabled>
+          <TouchableOpacity style={styles.menuItem} onPress={onNavigateToProfile} activeOpacity={0.7}>
             <Text style={styles.menuIcon}>👤</Text>
-            <Text style={[styles.menuLabel, styles.menuLabelMuted]}>Profile</Text>
+            <Text style={styles.menuLabel}>Profile</Text>
             <Text style={styles.menuArrow}>›</Text>
           </TouchableOpacity>
 

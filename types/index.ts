@@ -53,4 +53,5 @@ export type RootStackParamList = {
   Categories: { suburb: Suburb };
   Listings: { category: Category; suburb: Suburb };
   ListingDetail: { listing: Listing; accentColor: string };
+  Profile: undefined;
 };

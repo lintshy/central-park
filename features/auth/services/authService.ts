@@ -1,9 +1,11 @@
 import * as SecureStore from 'expo-secure-store';
 
 import { ApiError } from '../../../lib/errors';
+import { Suburb } from '../../../types';
 import { AuthUser } from '../types';
 
 const AUTH_USER_KEY = 'auth_user';
+const SUBURB_KEY = 'user_suburb';
 
 export async function getStoredUser(): Promise<AuthUser | null> {
   const raw = await SecureStore.getItemAsync(AUTH_USER_KEY);
@@ -22,6 +24,29 @@ export async function storeUser(user: AuthUser): Promise<void> {
 
 export async function clearStoredUser(): Promise<void> {
   await SecureStore.deleteItemAsync(AUTH_USER_KEY);
+}
+
+export async function getStoredSuburb(): Promise<Suburb | null> {
+  const raw = await SecureStore.getItemAsync(SUBURB_KEY);
+  if (raw === null) return null;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (typeof parsed !== 'object' || parsed === null) return null;
+    const v = parsed as Record<string, unknown>;
+    return typeof v['name'] === 'string' && typeof v['postcode'] === 'string'
+      ? (parsed as Suburb)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function storeSuburb(suburb: Suburb): Promise<void> {
+  await SecureStore.setItemAsync(SUBURB_KEY, JSON.stringify(suburb));
+}
+
+export async function clearStoredSuburb(): Promise<void> {
+  await SecureStore.deleteItemAsync(SUBURB_KEY);
 }
 
 interface GoogleUserPayload {

@@ -45,9 +45,7 @@ export default function CategoriesScreen({ navigation, route }: Props) {
 
       <View style={styles.header}>
         <View style={styles.headerTop}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn} hitSlop={8}>
-            <Text style={styles.backArrow}>‹</Text>
-          </TouchableOpacity>
+
           <UserAvatarButton size={36} />
         </View>
         <Text style={styles.suburb}>{suburb.name}</Text>
