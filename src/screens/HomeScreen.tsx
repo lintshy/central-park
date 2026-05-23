@@ -1,15 +1,16 @@
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
   FlatList,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList, Postcode, Suburb } from '../types';
-import { SUBURBS, POSTCODES } from '../data/suburbs';
+
+import { POSTCODES,SUBURBS } from '../data/suburbs';
+import { Postcode, RootStackParamList, Suburb } from '../types';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
