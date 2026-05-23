@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import SectionLabel from '../../../components/SectionLabel';
+import { theme } from '../../../theme';
 import { RootStackParamList } from '../../../types';
 import MenuItemCard from './MenuItemCard';
 import OrderStatusBadge from './OrderStatusBadge';
@@ -33,7 +34,7 @@ export default function ListingDetailScreen({ navigation, route }: Props) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1a5276" />
+      <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       {/* ── Header ── */}
       <View style={[styles.header, { backgroundColor: accentColor }]}>
@@ -135,7 +136,7 @@ export default function ListingDetailScreen({ navigation, route }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: '#f4f6fb', flex: 1 },
+  container: { backgroundColor: theme.colors.background, flex: 1 },
   header: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -145,21 +146,21 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   backBtn: { marginTop: 4 },
-  backArrow: { color: '#fff', fontSize: 32, lineHeight: 34 },
+  backArrow: { color: theme.colors.surface, fontSize: 32, lineHeight: 34 },
   headerText: { flex: 1 },
-  title: { color: '#fff', fontSize: 22, fontWeight: '800', lineHeight: 28 },
+  title: { color: theme.colors.surface, fontSize: 22, fontWeight: '800', lineHeight: 28 },
   address: { color: 'rgba(255,255,255,0.75)', fontSize: 13, marginTop: 4 },
   scroll: { flex: 1 },
   scrollContent: { padding: 20, paddingBottom: 16 },
   metaRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginBottom: 14 },
   metaItem: { alignItems: 'center', flexDirection: 'row', gap: 4 },
   metaIcon: { fontSize: 14 },
-  metaText: { color: '#5d6d7e', fontSize: 13 },
+  metaText: { color: theme.colors.textBody, fontSize: 13 },
   statusRow: { marginBottom: 20 },
   section: { marginBottom: 24 },
-  description: { color: '#5d6d7e', fontSize: 14, lineHeight: 22 },
+  description: { color: theme.colors.textBody, fontSize: 14, lineHeight: 22 },
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 24 },
   tag: { borderRadius: 20, borderWidth: 1, paddingHorizontal: 10, paddingVertical: 4 },
   tagText: { fontSize: 12, fontWeight: '600' },
-  contactText: { color: '#2980b9', fontSize: 14 },
+  contactText: { color: theme.colors.secondary, fontSize: 14 },
 });

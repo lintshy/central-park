@@ -6,6 +6,7 @@ import CategoriesScreen from './features/categories/components/CategoriesScreen'
 import HomeScreen from './features/home/components/HomeScreen';
 import ListingDetailScreen from './features/listingDetail/components/ListingDetailScreen';
 import ListingsScreen from './features/listings/components/ListingsScreen';
+import { theme } from './theme';
 import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -17,7 +18,7 @@ export default function App() {
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
-          contentStyle: { backgroundColor: '#f4f6fb' },
+          contentStyle: { backgroundColor: theme.colors.background },
         }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />

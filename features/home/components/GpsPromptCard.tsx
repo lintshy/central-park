@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import { theme } from '../../../theme';
+
 type Props = {
   onRequestLocation: () => void;
   onSkip: () => void;
@@ -27,7 +29,7 @@ export default function GpsPromptCard({ onRequestLocation, onSkip }: Props) {
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.surface,
     borderRadius: 20,
     elevation: 3,
     marginTop: 8,
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
   },
   body: {
-    color: '#7f8c8d',
+    color: theme.colors.textSecondary,
     fontSize: 14,
     lineHeight: 21,
     marginBottom: 24,
@@ -47,15 +49,15 @@ const styles = StyleSheet.create({
   icon: { fontSize: 48, marginBottom: 16 },
   primaryBtn: {
     alignItems: 'center',
-    backgroundColor: '#1a5276',
+    backgroundColor: theme.colors.primary,
     borderRadius: 12,
     marginBottom: 14,
     paddingHorizontal: 32,
     paddingVertical: 14,
     width: '100%',
   },
-  primaryBtnText: { color: '#fff', fontSize: 15, fontWeight: '700' },
+  primaryBtnText: { color: theme.colors.surface, fontSize: 15, fontWeight: '700' },
   skipBtn: { paddingVertical: 4 },
-  skipText: { color: '#7f8c8d', fontSize: 14, textDecorationLine: 'underline' },
-  title: { color: '#1c2833', fontSize: 18, fontWeight: '800', marginBottom: 8, textAlign: 'center' },
+  skipText: { color: theme.colors.textSecondary, fontSize: 14, textDecorationLine: 'underline' },
+  title: { color: theme.colors.textPrimary, fontSize: 18, fontWeight: '800', marginBottom: 8, textAlign: 'center' },
 });

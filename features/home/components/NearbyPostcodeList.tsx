@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import PostcodeChip from '../../../components/PostcodeChip';
 import SectionLabel from '../../../components/SectionLabel';
+import { theme } from '../../../theme';
 import { NearbyResult, Postcode } from '../../../types';
 
 type Props = {
@@ -37,5 +38,5 @@ export default function NearbyPostcodeList({ results, selected, onSelect, onSear
 const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: 10, marginBottom: 12 },
   searchLink: { alignSelf: 'flex-end', paddingVertical: 4 },
-  searchLinkText: { color: '#2980b9', fontSize: 13 },
+  searchLinkText: { color: theme.colors.secondary, fontSize: 13 },
 });

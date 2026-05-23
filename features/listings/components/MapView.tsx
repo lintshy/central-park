@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import ListingCard from '../../../components/ListingCard';
+import { theme } from '../../../theme';
 import { Listing } from '../../../types';
 
 type Props = {
@@ -93,13 +94,13 @@ export default function MapView({ listings, accentColor }: Props) {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   map: { flex: 1 },
-  webNote: { textAlign: 'center', color: '#7f8c8d', padding: 24, fontSize: 14 },
+  webNote: { textAlign: 'center', color: theme.colors.textSecondary, padding: 24, fontSize: 14 },
   popup: {
     position: 'absolute',
     bottom: 24,
     left: 16,
     right: 16,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.surface,
     borderRadius: 16,
     padding: 18,
     shadowColor: '#000',
@@ -109,9 +110,9 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   closeBtn: { position: 'absolute', top: 12, right: 14 },
-  closeText: { fontSize: 16, color: '#aab7b8' },
-  popupTitle: { fontSize: 16, fontWeight: '700', color: '#1c2833', marginBottom: 4, paddingRight: 20 },
-  popupAddr: { fontSize: 13, color: '#7f8c8d', marginBottom: 4 },
-  popupMeta: { fontSize: 13, color: '#2980b9' },
-  popupPrice: { fontSize: 14, fontWeight: '700', color: '#27ae60', marginTop: 4 },
+  closeText: { fontSize: 16, color: theme.colors.textTertiary },
+  popupTitle: { fontSize: 16, fontWeight: '700', color: theme.colors.textPrimary, marginBottom: 4, paddingRight: 20 },
+  popupAddr: { fontSize: 13, color: theme.colors.textSecondary, marginBottom: 4 },
+  popupMeta: { fontSize: 13, color: theme.colors.secondary },
+  popupPrice: { fontSize: 14, fontWeight: '700', color: theme.colors.success, marginTop: 4 },
 });

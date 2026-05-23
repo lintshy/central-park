@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import { theme } from '../../../theme';
 import { MenuItem } from '../../../types';
 
 type Props = {
@@ -55,7 +56,7 @@ export default function MenuItemCard({ item, quantity, accentColor, onChangeQuan
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.surface,
     borderRadius: 14,
     elevation: 1,
     flexDirection: 'row',
@@ -67,12 +68,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 4,
   },
-  description: { color: '#7f8c8d', fontSize: 12, lineHeight: 16, marginTop: 2 },
+  description: { color: theme.colors.textSecondary, fontSize: 12, lineHeight: 16, marginTop: 2 },
   info: { flex: 1 },
-  name: { color: '#1c2833', fontSize: 15, fontWeight: '700' },
+  name: { color: theme.colors.textPrimary, fontSize: 15, fontWeight: '700' },
   placeholderEmoji: { fontSize: 28 },
-  price: { color: '#27ae60', fontSize: 14, fontWeight: '700', marginTop: 4 },
-  qty: { color: '#1c2833', fontSize: 16, fontWeight: '700', minWidth: 24, textAlign: 'center' },
+  price: { color: theme.colors.success, fontSize: 14, fontWeight: '700', marginTop: 4 },
+  qty: { color: theme.colors.textPrimary, fontSize: 16, fontWeight: '700', minWidth: 24, textAlign: 'center' },
   stepBtn: {
     alignItems: 'center',
     borderRadius: 8,
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
   thumbnail: { borderRadius: 10, height: 72, width: 72 },
   thumbnailPlaceholder: {
     alignItems: 'center',
-    backgroundColor: '#f4f6fb',
+    backgroundColor: theme.colors.background,
     borderRadius: 10,
     height: 72,
     justifyContent: 'center',

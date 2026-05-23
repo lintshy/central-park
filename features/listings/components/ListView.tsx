@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import ListingCard from '../../../components/ListingCard';
+import { theme } from '../../../theme';
 import { Listing } from '../../../types';
 
 type Props = {
@@ -31,5 +32,5 @@ export default function ListView({ listings, accentColor, onPressItem }: Props) 
 const styles = StyleSheet.create({
   listContent: { paddingHorizontal: 16, paddingBottom: 24 },
   empty: { paddingTop: 60, alignItems: 'center' },
-  emptyText: { color: '#aab7b8', fontSize: 15 },
+  emptyText: { color: theme.colors.textTertiary, fontSize: 15 },
 });

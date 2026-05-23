@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import { theme } from '../../../theme';
 import { Category, RootStackParamList } from '../../../types';
 
 type Props = {
@@ -16,21 +17,21 @@ const CATEGORIES: { id: Category; label: string; emoji: string; description: str
     label: 'Home Meals',
     emoji: '🍽️',
     description: 'Home-cooked food from neighbours',
-    color: '#e8f8f5',
+    color: theme.colors.categoryMealsBg,
   },
   {
     id: 'garage_sales',
     label: 'Garage Sales',
     emoji: '🏷️',
     description: 'Local bargains and second-hand finds',
-    color: '#fef9e7',
+    color: theme.colors.categoryGarageSalesBg,
   },
   {
     id: 'activities',
     label: 'Activity Groups',
     emoji: '⚽',
     description: 'Running, cricket, yoga and more',
-    color: '#eaf4fb',
+    color: theme.colors.categoryActivitiesBg,
   },
 ];
 
@@ -39,7 +40,7 @@ export default function CategoriesScreen({ navigation, route }: Props) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1a5276" />
+      <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn} hitSlop={8}>
@@ -73,20 +74,20 @@ export default function CategoriesScreen({ navigation, route }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f4f6fb' },
+  container: { flex: 1, backgroundColor: theme.colors.background },
   header: {
-    backgroundColor: '#1a5276',
+    backgroundColor: theme.colors.primary,
     paddingTop: 60,
     paddingBottom: 24,
     paddingHorizontal: 24,
   },
-  suburb: { fontSize: 26, fontWeight: '800', color: '#fff' },
-  postcode: { fontSize: 13, color: '#aed6f1', marginTop: 2 },
+  suburb: { fontSize: 26, fontWeight: '800', color: theme.colors.surface },
+  postcode: { fontSize: 13, color: theme.colors.primaryLight, marginTop: 2 },
   body: { flex: 1, padding: 20, gap: 14 },
   prompt: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1c2833',
+    color: theme.colors.textPrimary,
     marginBottom: 6,
   },
   card: {
@@ -102,9 +103,9 @@ const styles = StyleSheet.create({
   },
   cardEmoji: { fontSize: 36, marginRight: 16 },
   cardText: { flex: 1 },
-  cardLabel: { fontSize: 18, fontWeight: '700', color: '#1c2833' },
-  cardDesc: { fontSize: 13, color: '#7f8c8d', marginTop: 2 },
-  cardArrow: { fontSize: 26, color: '#aab7b8', fontWeight: '300' },
+  cardLabel: { fontSize: 18, fontWeight: '700', color: theme.colors.textPrimary },
+  cardDesc: { fontSize: 13, color: theme.colors.textSecondary, marginTop: 2 },
+  cardArrow: { fontSize: 26, color: theme.colors.textTertiary, fontWeight: '300' },
   backBtn: { marginBottom: 8, alignSelf: 'flex-start' },
-  backArrow: { fontSize: 32, color: '#fff', lineHeight: 34 },
+  backArrow: { fontSize: 32, color: theme.colors.surface, lineHeight: 34 },
 });

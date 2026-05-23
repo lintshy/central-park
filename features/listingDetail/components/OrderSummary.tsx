@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import { theme } from '../../../theme';
 import { MenuItem } from '../../../types';
 
 type Props = {
@@ -42,15 +43,15 @@ export default function OrderSummary({ items, quantities, accentColor }: Props) 
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    borderTopColor: '#e8eaf0',
+    backgroundColor: theme.colors.surface,
+    borderTopColor: theme.colors.border,
     borderTopWidth: 1,
     paddingBottom: 32,
     paddingHorizontal: 20,
     paddingTop: 14,
   },
-  count: { color: '#1c2833', fontSize: 15, fontWeight: '700' },
-  hint: { color: '#aab7b8', fontSize: 14 },
+  count: { color: theme.colors.textPrimary, fontSize: 15, fontWeight: '700' },
+  hint: { color: theme.colors.textTertiary, fontSize: 14 },
   orderBtn: {
     alignItems: 'center',
     borderRadius: 14,
@@ -58,11 +59,11 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   orderBtnDisabled: { opacity: 0.45 },
-  orderBtnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  orderBtnText: { color: theme.colors.surface, fontSize: 16, fontWeight: '700' },
   summaryRow: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  total: { color: '#27ae60', fontSize: 18, fontWeight: '800' },
+  total: { color: theme.colors.success, fontSize: 18, fontWeight: '800' },
 });

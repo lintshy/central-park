@@ -3,6 +3,7 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 
 import SectionLabel from '../../../components/SectionLabel';
 import { POSTCODES } from '../../../constants/suburbs';
+import { theme } from '../../../theme';
 import { Postcode, PostcodeEntry } from '../../../types';
 
 type Props = {
@@ -40,7 +41,7 @@ export default function PostcodeTypeahead({ selected, onSelect }: Props) {
       <TextInput
         style={styles.input}
         placeholder="Type a postcode or suburb…"
-        placeholderTextColor="#aab7b8"
+        placeholderTextColor={theme.colors.textTertiary}
         value={query}
         onChangeText={setQuery}
         autoCorrect={false}
@@ -67,41 +68,41 @@ export default function PostcodeTypeahead({ selected, onSelect }: Props) {
 
 const styles = StyleSheet.create({
   dropdown: {
-    backgroundColor: '#fff',
-    borderColor: '#e8eaf0',
+    backgroundColor: theme.colors.surface,
+    borderColor: theme.colors.border,
     borderRadius: 12,
     borderWidth: 1.5,
     marginBottom: 16,
     overflow: 'hidden',
   },
   input: {
-    backgroundColor: '#fff',
-    borderColor: '#e8eaf0',
+    backgroundColor: theme.colors.surface,
+    borderColor: theme.colors.border,
     borderRadius: 12,
     borderWidth: 1.5,
-    color: '#1c2833',
+    color: theme.colors.textPrimary,
     fontSize: 15,
     marginBottom: 4,
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
   item: {
-    borderBottomColor: '#f4f6fb',
+    borderBottomColor: theme.colors.background,
     borderBottomWidth: 1,
     flexDirection: 'row',
     gap: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
   },
-  itemCode: { color: '#1a5276', fontSize: 16, fontWeight: '700', width: 44 },
-  itemLabel: { color: '#7f8c8d', fontSize: 14 },
-  noResults: { color: '#aab7b8', fontSize: 14, padding: 16, textAlign: 'center' },
+  itemCode: { color: theme.colors.primary, fontSize: 16, fontWeight: '700', width: 44 },
+  itemLabel: { color: theme.colors.textSecondary, fontSize: 14 },
+  noResults: { color: theme.colors.textTertiary, fontSize: 14, padding: 16, textAlign: 'center' },
   selectedBadge: {
-    backgroundColor: '#eafaf1',
+    backgroundColor: theme.colors.successBg,
     borderRadius: 8,
     marginTop: 4,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
-  selectedText: { color: '#27ae60', fontSize: 13, fontWeight: '600' },
+  selectedText: { color: theme.colors.success, fontSize: 13, fontWeight: '600' },
 });

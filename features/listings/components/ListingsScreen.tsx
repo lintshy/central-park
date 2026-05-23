@@ -4,6 +4,7 @@ import React, { useMemo, useState } from 'react';
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { LISTINGS } from '../../../constants/listings';
+import { theme } from '../../../theme';
 import { Category, RootStackParamList } from '../../../types';
 import ListView from './ListView';
 import MapView from './MapView';
@@ -14,9 +15,9 @@ type Props = {
 };
 
 const CATEGORY_META: Record<Category, { label: string; emoji: string; color: string }> = {
-  meals: { label: 'Home Meals', emoji: '🍽️', color: '#1abc9c' },
-  garage_sales: { label: 'Garage Sales', emoji: '🏷️', color: '#f39c12' },
-  activities: { label: 'Activity Groups', emoji: '⚽', color: '#2980b9' },
+  meals: { label: 'Home Meals', emoji: '🍽️', color: theme.colors.categoryMeals },
+  garage_sales: { label: 'Garage Sales', emoji: '🏷️', color: theme.colors.categoryGarageSales },
+  activities: { label: 'Activity Groups', emoji: '⚽', color: theme.colors.categoryActivities },
 };
 
 type ViewMode = 'list' | 'map';
@@ -34,7 +35,7 @@ export default function ListingsScreen({ navigation, route }: Props) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1a5276" />
+      <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn} hitSlop={8}>
@@ -84,9 +85,9 @@ export default function ListingsScreen({ navigation, route }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f4f6fb' },
+  container: { flex: 1, backgroundColor: theme.colors.background },
   header: {
-    backgroundColor: '#1a5276',
+    backgroundColor: theme.colors.primary,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,
@@ -95,12 +96,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   emoji: { fontSize: 32 },
-  title: { fontSize: 22, fontWeight: '800', color: '#fff' },
-  subtitle: { fontSize: 13, color: '#aed6f1', marginTop: 2 },
+  title: { fontSize: 22, fontWeight: '800', color: theme.colors.surface },
+  subtitle: { fontSize: 13, color: theme.colors.primaryLight, marginTop: 2 },
   toggleRow: {
     flexDirection: 'row',
     margin: 16,
-    backgroundColor: '#e8eaf0',
+    backgroundColor: theme.colors.border,
     borderRadius: 10,
     padding: 4,
   },
@@ -110,9 +111,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 8,
   },
-  toggleActive: { backgroundColor: '#1a5276' },
-  toggleText: { fontSize: 14, fontWeight: '600', color: '#7f8c8d' },
-  toggleTextActive: { color: '#fff' },
+  toggleActive: { backgroundColor: theme.colors.primary },
+  toggleText: { fontSize: 14, fontWeight: '600', color: theme.colors.textSecondary },
+  toggleTextActive: { color: theme.colors.surface },
   backBtn: { marginRight: 12 },
-  backArrow: { fontSize: 32, color: '#fff', lineHeight: 34 },
+  backArrow: { fontSize: 32, color: theme.colors.surface, lineHeight: 34 },
 });

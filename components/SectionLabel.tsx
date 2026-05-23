@@ -1,13 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
+import { theme } from '../theme';
+
 export default function SectionLabel({ children }: { children: string }) {
   return <Text style={styles.label}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({
   label: {
-    color: '#7f8c8d',
+    color: theme.colors.textSecondary,
     fontSize: 13,
     fontWeight: '700',
     letterSpacing: 1,

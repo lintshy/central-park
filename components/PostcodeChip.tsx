@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
+import { theme } from '../theme';
 import { PostcodeEntry } from '../types';
 
 type Props = {
@@ -37,8 +38,8 @@ export default function PostcodeChip({ entry, selected, onPress, distanceKm }: P
 const styles = StyleSheet.create({
   chip: {
     alignItems: 'center',
-    backgroundColor: '#fff',
-    borderColor: '#e8eaf0',
+    backgroundColor: theme.colors.surface,
+    borderColor: theme.colors.border,
     borderRadius: 14,
     borderWidth: 2,
     elevation: 2,
@@ -49,9 +50,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 8,
   },
-  chipActive: { backgroundColor: '#1a5276', borderColor: '#1a5276' },
-  code: { color: '#1a5276', fontSize: 26, fontWeight: '800' },
-  distance: { color: '#2980b9', fontSize: 11, fontWeight: '600', marginTop: 4 },
-  region: { color: '#7f8c8d', fontSize: 11, marginTop: 4, textAlign: 'center' },
-  textActive: { color: '#fff' },
+  chipActive: { backgroundColor: theme.colors.primary, borderColor: theme.colors.primary },
+  code: { color: theme.colors.primary, fontSize: 26, fontWeight: '800' },
+  distance: { color: theme.colors.secondary, fontSize: 11, fontWeight: '600', marginTop: 4 },
+  region: { color: theme.colors.textSecondary, fontSize: 11, marginTop: 4, textAlign: 'center' },
+  textActive: { color: theme.colors.surface },
 });

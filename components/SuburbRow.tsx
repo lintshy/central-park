@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
+import { theme } from '../theme';
 import { Suburb } from '../types';
 
 type Props = {
@@ -20,7 +21,7 @@ export default function SuburbRow({ suburb, onPress }: Props) {
 const styles = StyleSheet.create({
   row: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.surface,
     borderRadius: 12,
     elevation: 1,
     flexDirection: 'row',
@@ -32,6 +33,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 6,
   },
-  arrow: { color: '#aed6f1', fontSize: 22, fontWeight: '300' },
-  name: { color: '#1c2833', flex: 1, fontSize: 16, fontWeight: '600' },
+  arrow: { color: theme.colors.primaryLight, fontSize: 22, fontWeight: '300' },
+  name: { color: theme.colors.textPrimary, flex: 1, fontSize: 16, fontWeight: '600' },
 });

@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { theme } from '../../../theme';
+
 type Props = {
   isAccepting: boolean;
 };
@@ -26,12 +28,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
-  closed: { backgroundColor: '#fdf2f2' },
+  closed: { backgroundColor: theme.colors.errorBg },
   dot: { borderRadius: 4, height: 8, width: 8 },
-  dotClosed: { backgroundColor: '#e74c3c' },
-  dotOpen: { backgroundColor: '#27ae60' },
+  dotClosed: { backgroundColor: theme.colors.error },
+  dotOpen: { backgroundColor: theme.colors.success },
   label: { fontSize: 13, fontWeight: '600' },
-  labelClosed: { color: '#c0392b' },
-  labelOpen: { color: '#1e8449' },
-  open: { backgroundColor: '#eafaf1' },
+  labelClosed: { color: theme.colors.errorDark },
+  labelOpen: { color: theme.colors.successDark },
+  open: { backgroundColor: theme.colors.successBg },
 });

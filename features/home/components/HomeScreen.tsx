@@ -12,6 +12,7 @@ import {
 import SectionLabel from '../../../components/SectionLabel';
 import SuburbRow from '../../../components/SuburbRow';
 import { SUBURBS } from '../../../constants/suburbs';
+import { theme } from '../../../theme';
 import { Postcode, RootStackParamList, Suburb } from '../../../types';
 import { useNearestPostcodes } from '../hooks/useNearestPostcodes';
 import GpsPromptCard from './GpsPromptCard';
@@ -56,7 +57,7 @@ export default function HomeScreen({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1a5276" />
+      <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       <View style={styles.header}>
         <Text style={styles.appName}>Central Park</Text>
@@ -77,7 +78,7 @@ export default function HomeScreen({ navigation }: Props) {
 
         {phase === 'gps_loading' && (
           <View style={styles.loading}>
-            <ActivityIndicator size="large" color="#1a5276" />
+            <ActivityIndicator size="large" color={theme.colors.primary} />
             <Text style={styles.loadingText}>Finding your location…</Text>
           </View>
         )}
@@ -116,18 +117,18 @@ export default function HomeScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: '#f4f6fb', flex: 1 },
+  container: { backgroundColor: theme.colors.background, flex: 1 },
   header: {
-    backgroundColor: '#1a5276',
+    backgroundColor: theme.colors.primary,
     paddingBottom: 28,
     paddingHorizontal: 24,
     paddingTop: 60,
   },
-  appName: { color: '#fff', fontSize: 30, fontWeight: '800', letterSpacing: 0.5 },
-  tagline: { color: '#aed6f1', fontSize: 14, marginTop: 4 },
+  appName: { color: theme.colors.surface, fontSize: 30, fontWeight: '800', letterSpacing: 0.5 },
+  tagline: { color: theme.colors.primaryLight, fontSize: 14, marginTop: 4 },
   scroll: { flex: 1 },
   scrollContent: { padding: 20, paddingBottom: 40 },
   loading: { alignItems: 'center', gap: 16, paddingTop: 60 },
-  loadingText: { color: '#7f8c8d', fontSize: 15 },
+  loadingText: { color: theme.colors.textSecondary, fontSize: 15 },
   suburbSection: { marginTop: 24 },
 });

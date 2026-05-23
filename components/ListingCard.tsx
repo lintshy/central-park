@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity,View } from 'react-native';
 
+import { theme } from '../theme';
 import { Listing } from '../types';
 
 type Props = {
@@ -49,7 +50,7 @@ export default function ListingCard({ listing, accentColor, onPress }: Props) {
         {listing.contact && (
           <View style={styles.metaRow}>
             <Text style={styles.metaIcon}>📧</Text>
-            <Text style={[styles.metaText, { color: '#2980b9' }]}>{listing.contact}</Text>
+            <Text style={[styles.metaText, { color: theme.colors.secondary }]}>{listing.contact}</Text>
           </View>
         )}
 
@@ -70,7 +71,7 @@ export default function ListingCard({ listing, accentColor, onPress }: Props) {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.surface,
     borderRadius: 16,
     marginBottom: 14,
     overflow: 'hidden',
@@ -82,13 +83,13 @@ const styles = StyleSheet.create({
   },
   accentBar: { width: 5 },
   content: { flex: 1, padding: 16 },
-  title: { fontSize: 16, fontWeight: '700', color: '#1c2833', marginBottom: 2 },
-  address: { fontSize: 12, color: '#aab7b8', marginBottom: 8 },
-  description: { fontSize: 13, color: '#5d6d7e', lineHeight: 19, marginBottom: 10 },
+  title: { fontSize: 16, fontWeight: '700', color: theme.colors.textPrimary, marginBottom: 2 },
+  address: { fontSize: 12, color: theme.colors.textTertiary, marginBottom: 8 },
+  description: { fontSize: 13, color: theme.colors.textBody, lineHeight: 19, marginBottom: 10 },
   metaRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
   metaIcon: { fontSize: 12, marginRight: 6 },
-  metaText: { fontSize: 12, color: '#7f8c8d', flexShrink: 1 },
-  price: { fontWeight: '700', color: '#27ae60', fontSize: 13 },
+  metaText: { fontSize: 12, color: theme.colors.textSecondary, flexShrink: 1 },
+  price: { fontWeight: '700', color: theme.colors.success, fontSize: 13 },
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 8, gap: 6 },
   tag: {
     borderWidth: 1,
