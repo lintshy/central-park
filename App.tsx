@@ -5,17 +5,17 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 import { LoginScreen } from './features/auth/components/LoginScreen';
 import { useAuthStore } from './features/auth/store/authStore';
-import CategoriesScreen from './features/categories/components/CategoriesScreen';
-import ProfileScreen from './features/profile/components/ProfileScreen';
-import HomeScreen from './features/home/components/HomeScreen';
-import ListingDetailScreen from './features/listingDetail/components/ListingDetailScreen';
-import ListingsScreen from './features/listings/components/ListingsScreen';
+import { CategoriesScreen } from './features/categories/components/CategoriesScreen';
+import { ProfileScreen } from './features/profile/components/ProfileScreen';
+import { HomeScreen } from './features/home/components/HomeScreen';
+import { ListingDetailScreen } from './features/listingDetail/components/ListingDetailScreen';
+import { ListingsScreen } from './features/listings/components/ListingsScreen';
 import { theme } from './theme';
 import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function App(): React.JSX.Element {
+export function App(): React.JSX.Element {
   const { user, isLoading, hydrate } = useAuthStore();
 
   useEffect(() => {

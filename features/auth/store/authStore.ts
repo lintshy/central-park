@@ -2,7 +2,6 @@ import { create } from 'zustand';
 
 import { Suburb } from '../../../types';
 import {
-  clearStoredSuburb,
   clearStoredUser,
   getStoredSuburb,
   getStoredUser,
@@ -32,12 +31,17 @@ export const useAuthStore = create<AuthState>()((set) => ({
   },
 
   signIn: async (user: AuthUser) => {
+    // storeUser preserves any existing suburb for this email address
     await storeUser(user);
-    set({ user });
+    // Read back the suburb so returning users are restored to their suburb immediately
+    const suburb = await getStoredSuburb();
+    set({ user, suburb });
   },
 
   signOut: async () => {
-    await Promise.all([clearStoredUser(), clearStoredSuburb()]);
+    // Clears only the session — user_${email} data (including suburb) is kept
+    // so returning users don't have to re-select their suburb
+    await clearStoredUser();
     set({ user: null, suburb: null });
   },
 

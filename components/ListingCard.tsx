@@ -10,7 +10,7 @@ type Props = {
   onPress?: () => void;
 };
 
-export default function ListingCard({ listing, accentColor, onPress }: Props) {
+export function ListingCard({ listing, accentColor, onPress }: Props) {
   return (
     <TouchableOpacity style={styles.card} activeOpacity={onPress ? 0.85 : 1} onPress={onPress}>
       <View style={[styles.accentBar, { backgroundColor: accentColor }]} />

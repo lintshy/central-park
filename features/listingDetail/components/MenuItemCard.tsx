@@ -11,7 +11,7 @@ type Props = {
   onChangeQuantity: (qty: number) => void;
 };
 
-export default function MenuItemCard({ item, quantity, accentColor, onChangeQuantity }: Props) {
+export function MenuItemCard({ item, quantity, accentColor, onChangeQuantity }: Props) {
   return (
     <View style={styles.card}>
       {item.thumbnailUrl ? (

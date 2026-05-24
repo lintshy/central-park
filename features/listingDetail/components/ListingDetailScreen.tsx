@@ -10,20 +10,22 @@ import {
   View,
 } from 'react-native';
 
-import SectionLabel from '../../../components/SectionLabel';
+import { SectionLabel } from '../../../components/SectionLabel';
 import { UserAvatarButton } from '../../../components/UserAvatarButton';
 import { theme } from '../../../theme';
 import { RootStackParamList } from '../../../types';
-import MenuItemCard from './MenuItemCard';
-import OrderStatusBadge from './OrderStatusBadge';
-import OrderSummary from './OrderSummary';
+import { AddressWidget } from './AddressWidget';
+import { MapPreview } from './MapPreview';
+import { MenuItemCard } from './MenuItemCard';
+import { OrderStatusBadge } from './OrderStatusBadge';
+import { OrderSummary } from './OrderSummary';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'ListingDetail'>;
   route: RouteProp<RootStackParamList, 'ListingDetail'>;
 };
 
-export default function ListingDetailScreen({ navigation, route }: Props) {
+export function ListingDetailScreen({ navigation, route }: Props) {
   const { listing, accentColor } = route.params;
   const [quantities, setQuantities] = useState<Record<string, number>>({});
 
@@ -82,6 +84,26 @@ export default function ListingDetailScreen({ navigation, route }: Props) {
             <OrderStatusBadge isAccepting={listing.isAcceptingOrders} />
           </View>
         )}
+
+        {/* ── Location ── */}
+        <View style={styles.section}>
+          <SectionLabel>Location</SectionLabel>
+          <View style={styles.locationCard}>
+            <MapPreview
+              latitude={listing.latitude}
+              longitude={listing.longitude}
+              title={listing.title}
+              accentColor={accentColor}
+            />
+            <AddressWidget
+              address={listing.address}
+              suburb={listing.suburb}
+              latitude={listing.latitude}
+              longitude={listing.longitude}
+              accentColor={accentColor}
+            />
+          </View>
+        </View>
 
         {/* ── About ── */}
         <View style={styles.section}>
@@ -160,6 +182,16 @@ const styles = StyleSheet.create({
   metaText: { color: theme.colors.textBody, fontSize: 13 },
   statusRow: { marginBottom: 20 },
   section: { marginBottom: 24 },
+  locationCard: {
+    borderRadius: 12,
+    elevation: 2,
+    marginTop: 8,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+  },
   description: { color: theme.colors.textBody, fontSize: 14, lineHeight: 22 },
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 24 },
   tag: { borderRadius: 20, borderWidth: 1, paddingHorizontal: 10, paddingVertical: 4 },

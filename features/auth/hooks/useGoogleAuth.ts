@@ -3,6 +3,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { useCallback, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
+import { logger } from '../../../lib/logger';
 import { useAuthStore } from '../store/authStore';
 import { fetchGoogleUser } from '../services/authService';
 
@@ -17,7 +18,7 @@ function buildRedirectUri(): string | undefined {
     if (iosClientId !== undefined) {
       const prefix = iosClientId.replace('.apps.googleusercontent.com', '');
       const uri = `com.googleusercontent.apps.${prefix}:/`;
-      if (__DEV__) console.log('[Auth] iOS redirect URI:', uri);
+      logger.info('[Auth] iOS redirect URI', { uri });
       return uri;
     }
   }
@@ -51,7 +52,7 @@ export function useGoogleAuth(): GoogleAuthHook {
     if (response === null || response.type === 'cancel' || response.type === 'dismiss') return;
 
     if (response.type === 'error') {
-      if (__DEV__) console.warn('[Auth] OAuth error:', JSON.stringify(response.error, null, 2));
+      logger.warn('[Auth] OAuth error', { error: response.error });
       const code = response.error?.code ?? response.error?.message ?? 'unknown';
       setError(`Google sign-in error: ${code}`);
       return;
@@ -61,10 +62,7 @@ export function useGoogleAuth(): GoogleAuthHook {
 
     const accessToken = response.authentication?.accessToken;
 
-    if (__DEV__) {
-      console.log('[Auth] response type:', response.type);
-      console.log('[Auth] accessToken present:', accessToken !== undefined);
-    }
+    logger.info('[Auth] response type', { type: response.type, hasAccessToken: accessToken !== undefined });
 
     if (accessToken === undefined) {
       setError('No access token received from Google');

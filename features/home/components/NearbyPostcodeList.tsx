@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import PostcodeChip from '../../../components/PostcodeChip';
-import SectionLabel from '../../../components/SectionLabel';
+import { PostcodeChip } from '../../../components/PostcodeChip';
+import { SectionLabel } from '../../../components/SectionLabel';
 import { theme } from '../../../theme';
 import { NearbyResult, Postcode } from '../../../types';
 
@@ -13,7 +13,7 @@ type Props = {
   onSearchInstead: () => void;
 };
 
-export default function NearbyPostcodeList({ results, selected, onSelect, onSearchInstead }: Props) {
+export function NearbyPostcodeList({ results, selected, onSelect, onSearchInstead }: Props) {
   return (
     <View>
       <SectionLabel>Nearest postcodes</SectionLabel>

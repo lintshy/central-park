@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import SectionLabel from '../../../components/SectionLabel';
+import { SectionLabel } from '../../../components/SectionLabel';
 import { POSTCODES } from '../../../constants/suburbs';
 import { theme } from '../../../theme';
 import { Postcode, PostcodeEntry } from '../../../types';
@@ -20,7 +20,7 @@ function DropdownItem({ entry, onPress }: { entry: PostcodeEntry; onPress: () =>
   );
 }
 
-export default function PostcodeTypeahead({ selected, onSelect }: Props) {
+export function PostcodeTypeahead({ selected, onSelect }: Props) {
   const [query, setQuery] = useState('');
 
   const results = POSTCODES.filter(

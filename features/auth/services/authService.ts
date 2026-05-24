@@ -4,50 +4,78 @@ import { ApiError } from '../../../lib/errors';
 import { Suburb } from '../../../types';
 import { AuthUser } from '../types';
 
-const AUTH_USER_KEY = 'auth_user';
-const SUBURB_KEY = 'user_suburb';
+const CURRENT_SESSION_KEY = 'current_session';
 
-export async function getStoredUser(): Promise<AuthUser | null> {
-  const raw = await SecureStore.getItemAsync(AUTH_USER_KEY);
+// Each user's data lives under their own key, keyed by email.
+// @ and . are replaced so the key is a valid SecureStore identifier.
+function userDataKey(email: string): string {
+  return `user_${email.replace(/[@.+]/g, '_')}`;
+}
+
+interface StoredUserData {
+  user: AuthUser;
+  suburb: Suburb | null;
+}
+
+// ── Internal helpers ──────────────────────────────────────────────────────────
+
+async function readSessionEmail(): Promise<string | null> {
+  return SecureStore.getItemAsync(CURRENT_SESSION_KEY);
+}
+
+async function readUserData(email: string): Promise<StoredUserData | null> {
+  const raw = await SecureStore.getItemAsync(userDataKey(email));
   if (raw === null) return null;
   try {
     const parsed: unknown = JSON.parse(raw);
-    return isAuthUser(parsed) ? parsed : null;
+    return isStoredUserData(parsed) ? parsed : null;
   } catch {
     return null;
   }
 }
 
-export async function storeUser(user: AuthUser): Promise<void> {
-  await SecureStore.setItemAsync(AUTH_USER_KEY, JSON.stringify(user));
+async function writeUserData(email: string, data: StoredUserData): Promise<void> {
+  await SecureStore.setItemAsync(userDataKey(email), JSON.stringify(data));
 }
 
-export async function clearStoredUser(): Promise<void> {
-  await SecureStore.deleteItemAsync(AUTH_USER_KEY);
+// ── Public API ────────────────────────────────────────────────────────────────
+
+export async function getStoredUser(): Promise<AuthUser | null> {
+  const email = await readSessionEmail();
+  if (email === null) return null;
+  const data = await readUserData(email);
+  return data?.user ?? null;
 }
 
 export async function getStoredSuburb(): Promise<Suburb | null> {
-  const raw = await SecureStore.getItemAsync(SUBURB_KEY);
-  if (raw === null) return null;
-  try {
-    const parsed: unknown = JSON.parse(raw);
-    if (typeof parsed !== 'object' || parsed === null) return null;
-    const v = parsed as Record<string, unknown>;
-    return typeof v['name'] === 'string' && typeof v['postcode'] === 'string'
-      ? (parsed as Suburb)
-      : null;
-  } catch {
-    return null;
-  }
+  const email = await readSessionEmail();
+  if (email === null) return null;
+  const data = await readUserData(email);
+  return data?.suburb ?? null;
+}
+
+// Persists the user and sets the active session.
+// Existing suburb is preserved so returning users don't lose their selection.
+export async function storeUser(user: AuthUser): Promise<void> {
+  const existing = await readUserData(user.email);
+  await writeUserData(user.email, { user, suburb: existing?.suburb ?? null });
+  await SecureStore.setItemAsync(CURRENT_SESSION_KEY, user.email);
 }
 
 export async function storeSuburb(suburb: Suburb): Promise<void> {
-  await SecureStore.setItemAsync(SUBURB_KEY, JSON.stringify(suburb));
+  const email = await readSessionEmail();
+  if (email === null) return;
+  const existing = await readUserData(email);
+  if (existing === null) return;
+  await writeUserData(email, { ...existing, suburb });
 }
 
-export async function clearStoredSuburb(): Promise<void> {
-  await SecureStore.deleteItemAsync(SUBURB_KEY);
+// Clears only the active session — user data is kept for future logins.
+export async function clearStoredUser(): Promise<void> {
+  await SecureStore.deleteItemAsync(CURRENT_SESSION_KEY);
 }
+
+// ── Google userinfo ───────────────────────────────────────────────────────────
 
 interface GoogleUserPayload {
   id: string;
@@ -75,14 +103,31 @@ export async function fetchGoogleUser(accessToken: string): Promise<AuthUser> {
   };
 }
 
+// ── Type guards ───────────────────────────────────────────────────────────────
+
 function isAuthUser(val: unknown): val is AuthUser {
   if (typeof val !== 'object' || val === null) return false;
   const v = val as Record<string, unknown>;
-  return typeof v['id'] === 'string' && typeof v['email'] === 'string' && typeof v['name'] === 'string';
+  return (
+    typeof v['id'] === 'string' &&
+    typeof v['email'] === 'string' &&
+    typeof v['name'] === 'string'
+  );
+}
+
+function isStoredUserData(val: unknown): val is StoredUserData {
+  if (typeof val !== 'object' || val === null) return false;
+  const v = val as Record<string, unknown>;
+  return isAuthUser(v['user']);
+  // suburb field is trusted as-written; worst case it's null
 }
 
 function isGoogleUserPayload(val: unknown): val is GoogleUserPayload {
   if (typeof val !== 'object' || val === null) return false;
   const v = val as Record<string, unknown>;
-  return typeof v['id'] === 'string' && typeof v['email'] === 'string' && typeof v['name'] === 'string';
+  return (
+    typeof v['id'] === 'string' &&
+    typeof v['email'] === 'string' &&
+    typeof v['name'] === 'string'
+  );
 }

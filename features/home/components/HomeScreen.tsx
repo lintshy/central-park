@@ -9,17 +9,17 @@ import {
   View,
 } from 'react-native';
 
-import SectionLabel from '../../../components/SectionLabel';
-import SuburbRow from '../../../components/SuburbRow';
+import { SectionLabel } from '../../../components/SectionLabel';
+import { SuburbRow } from '../../../components/SuburbRow';
 import { UserAvatarButton } from '../../../components/UserAvatarButton';
 import { useAuthStore } from '../../auth/store/authStore';
 import { SUBURBS } from '../../../constants/suburbs';
 import { theme } from '../../../theme';
 import { Postcode, RootStackParamList, Suburb } from '../../../types';
 import { useNearestPostcodes } from '../hooks/useNearestPostcodes';
-import GpsPromptCard from './GpsPromptCard';
-import NearbyPostcodeList from './NearbyPostcodeList';
-import PostcodeTypeahead from './PostcodeTypeahead';
+import { GpsPromptCard } from './GpsPromptCard';
+import { NearbyPostcodeList } from './NearbyPostcodeList';
+import { PostcodeTypeahead } from './PostcodeTypeahead';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -38,7 +38,7 @@ function derivePhase(
   return 'gps_prompt';
 }
 
-export default function HomeScreen({ navigation }: Props) {
+export function HomeScreen({ navigation }: Props) {
   const [forceTypeahead, setForceTypeahead] = useState(false);
   const [selectedPostcode, setSelectedPostcode] = useState<Postcode | null>(null);
   const [gpsState, requestGps] = useNearestPostcodes(3);

@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 
-import SectionLabel from '../../../components/SectionLabel';
+import { SectionLabel } from '../../../components/SectionLabel';
 import { UserAvatar } from '../../../components/UserAvatar';
 import { useAuthStore } from '../../auth/store/authStore';
 import { SUBURBS } from '../../../constants/suburbs';
@@ -20,7 +20,7 @@ type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Profile'>;
 };
 
-export default function ProfileScreen({ navigation }: Props): React.JSX.Element {
+export function ProfileScreen({ navigation }: Props): React.JSX.Element {
   const user = useAuthStore((state) => state.user);
   const suburb = useAuthStore((state) => state.suburb);
   const setSuburb = useAuthStore((state) => state.setSuburb);

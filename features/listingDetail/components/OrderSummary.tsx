@@ -10,7 +10,7 @@ type Props = {
   accentColor: string;
 };
 
-export default function OrderSummary({ items, quantities, accentColor }: Props) {
+export function OrderSummary({ items, quantities, accentColor }: Props) {
   const totalCount = Object.values(quantities).reduce((sum, q) => sum + q, 0);
   const totalPrice = items.reduce(
     (sum, item) => sum + (quantities[item.id] ?? 0) * item.priceAud,

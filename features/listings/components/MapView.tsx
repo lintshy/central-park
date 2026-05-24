@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import ListingCard from '../../../components/ListingCard';
+import { ListingCard } from '../../../components/ListingCard';
 import { theme } from '../../../theme';
 import { Listing } from '../../../types';
 
@@ -10,7 +10,7 @@ type Props = {
   accentColor: string;
 };
 
-export default function MapView({ listings, accentColor }: Props) {
+export function MapView({ listings, accentColor }: Props) {
   const [selected, setSelected] = useState<Listing | null>(null);
 
   const region = useMemo(() => {

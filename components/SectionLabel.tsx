@@ -3,7 +3,7 @@ import { StyleSheet, Text } from 'react-native';
 
 import { theme } from '../theme';
 
-export default function SectionLabel({ children }: { children: string }) {
+export function SectionLabel({ children }: { children: string }) {
   return <Text style={styles.label}>{children}</Text>;
 }
 

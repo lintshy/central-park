@@ -36,7 +36,7 @@ const CATEGORIES: { id: Category; label: string; emoji: string; description: str
   },
 ];
 
-export default function CategoriesScreen({ navigation, route }: Props) {
+export function CategoriesScreen({ navigation, route }: Props) {
   const { suburb } = route.params;
 
   return (

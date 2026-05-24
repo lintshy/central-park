@@ -7,7 +7,7 @@ type Props = {
   isAccepting: boolean;
 };
 
-export default function OrderStatusBadge({ isAccepting }: Props) {
+export function OrderStatusBadge({ isAccepting }: Props) {
   return (
     <View style={[styles.badge, isAccepting ? styles.open : styles.closed]}>
       <View style={[styles.dot, isAccepting ? styles.dotOpen : styles.dotClosed]} />

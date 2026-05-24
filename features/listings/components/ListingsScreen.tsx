@@ -7,8 +7,8 @@ import { UserAvatarButton } from '../../../components/UserAvatarButton';
 import { LISTINGS } from '../../../constants/listings';
 import { theme } from '../../../theme';
 import { Category, RootStackParamList } from '../../../types';
-import ListView from './ListView';
-import MapView from './MapView';
+import { ListView } from './ListView';
+import { MapView } from './MapView';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Listings'>;
@@ -23,7 +23,7 @@ const CATEGORY_META: Record<Category, { label: string; emoji: string; color: str
 
 type ViewMode = 'list' | 'map';
 
-export default function ListingsScreen({ navigation, route }: Props) {
+export function ListingsScreen({ navigation, route }: Props) {
   const { category, suburb } = route.params;
   const [viewMode, setViewMode] = useState<ViewMode>('list');
 

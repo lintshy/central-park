@@ -9,7 +9,7 @@ type Props = {
   onPress: () => void;
 };
 
-export default function SuburbRow({ suburb, onPress }: Props) {
+export function SuburbRow({ suburb, onPress }: Props) {
   return (
     <TouchableOpacity style={styles.row} onPress={onPress} activeOpacity={0.7}>
       <Text style={styles.name}>{suburb.name}</Text>

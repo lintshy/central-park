@@ -11,7 +11,7 @@ type Props = {
   distanceKm?: number;
 };
 
-export default function PostcodeChip({ entry, selected, onPress, distanceKm }: Props) {
+export function PostcodeChip({ entry, selected, onPress, distanceKm }: Props) {
   const regionLabel = entry.label.split('–')[1]?.trim() ?? entry.label;
 
   return (

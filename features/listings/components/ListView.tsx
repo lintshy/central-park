@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-import ListingCard from '../../../components/ListingCard';
+import { ListingCard } from '../../../components/ListingCard';
 import { theme } from '../../../theme';
 import { Listing } from '../../../types';
 
@@ -11,7 +11,7 @@ type Props = {
   onPressItem: (listing: Listing) => void;
 };
 
-export default function ListView({ listings, accentColor, onPressItem }: Props) {
+export function ListView({ listings, accentColor, onPressItem }: Props) {
   return (
     <FlatList
       data={listings}

@@ -8,7 +8,7 @@ type Props = {
   onSkip: () => void;
 };
 
-export default function GpsPromptCard({ onRequestLocation, onSkip }: Props) {
+export function GpsPromptCard({ onRequestLocation, onSkip }: Props) {
   return (
     <View style={styles.card}>
       <Text style={styles.icon}>📍</Text>
