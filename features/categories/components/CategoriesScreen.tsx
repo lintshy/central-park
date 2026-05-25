@@ -3,9 +3,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { UserAvatarButton } from '../../../components/UserAvatarButton';
-import { theme } from '../../../theme';
-import { Category, RootStackParamList } from '../../../types';
+import { UserAvatarButton } from '@/components/UserAvatarButton';
+import { theme } from '@/theme';
+import { Category, RootStackParamList } from '@/types';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Categories'>;

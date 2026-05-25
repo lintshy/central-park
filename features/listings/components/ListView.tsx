@@ -1,9 +1,9 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-import { ListingCard } from '../../../components/ListingCard';
-import { theme } from '../../../theme';
-import { Listing } from '../../../types';
+import { ListingCard } from '@/components/ListingCard';
+import { theme } from '@/theme';
+import { Listing } from '@/types';
 
 type Props = {
   listings: Listing[];

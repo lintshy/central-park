@@ -1,9 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import type MapViewType from 'react-native-maps';
+import type { Marker as MarkerType } from 'react-native-maps';
 
-import { ListingCard } from '../../../components/ListingCard';
-import { theme } from '../../../theme';
-import { Listing } from '../../../types';
+import { ListingCard } from '@/components/ListingCard';
+import { theme } from '@/theme';
+import { Listing } from '@/types';
 
 type Props = {
   listings: Listing[];
@@ -40,10 +42,8 @@ export function MapView({ listings, accentColor }: Props) {
   }
 
   // Lazy-require so the app doesn't crash if react-native-maps isn't linked
-  // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-explicit-any
-  let RNMapView: any = null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let Marker: any = null;
+  let RNMapView: typeof MapViewType;
+  let Marker: typeof MarkerType;
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const maps = require('react-native-maps');

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { Suburb } from '../../../types';
+import { Suburb } from '@/types';
 import {
   clearStoredUser,
   getStoredSuburb,

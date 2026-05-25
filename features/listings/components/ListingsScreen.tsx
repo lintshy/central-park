@@ -3,10 +3,10 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useMemo, useState } from 'react';
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { UserAvatarButton } from '../../../components/UserAvatarButton';
-import { LISTINGS } from '../../../constants/listings';
-import { theme } from '../../../theme';
-import { Category, RootStackParamList } from '../../../types';
+import { UserAvatarButton } from '@/components/UserAvatarButton';
+import { LISTINGS } from '@/constants/listings';
+import { theme } from '@/theme';
+import { Category, RootStackParamList } from '@/types';
 import { ListView } from './ListView';
 import { MapView } from './MapView';
 

@@ -9,13 +9,13 @@ import {
   View,
 } from 'react-native';
 
-import { SectionLabel } from '../../../components/SectionLabel';
-import { SuburbRow } from '../../../components/SuburbRow';
-import { UserAvatarButton } from '../../../components/UserAvatarButton';
+import { SectionLabel } from '@/components/SectionLabel';
+import { SuburbRow } from '@/components/SuburbRow';
+import { UserAvatarButton } from '@/components/UserAvatarButton';
 import { useAuthStore } from '../../auth/store/authStore';
-import { SUBURBS } from '../../../constants/suburbs';
-import { theme } from '../../../theme';
-import { Postcode, RootStackParamList, Suburb } from '../../../types';
+import { SUBURBS } from '@/constants/suburbs';
+import { theme } from '@/theme';
+import { Postcode, RootStackParamList, Suburb } from '@/types';
 import { useNearestPostcodes } from '../hooks/useNearestPostcodes';
 import { GpsPromptCard } from './GpsPromptCard';
 import { NearbyPostcodeList } from './NearbyPostcodeList';

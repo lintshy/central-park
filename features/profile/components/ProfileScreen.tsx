@@ -9,12 +9,12 @@ import {
   View,
 } from 'react-native';
 
-import { SectionLabel } from '../../../components/SectionLabel';
-import { UserAvatar } from '../../../components/UserAvatar';
+import { SectionLabel } from '@/components/SectionLabel';
+import { UserAvatar } from '@/components/UserAvatar';
 import { useAuthStore } from '../../auth/store/authStore';
-import { SUBURBS } from '../../../constants/suburbs';
-import { theme } from '../../../theme';
-import { RootStackParamList, Suburb } from '../../../types';
+import { SUBURBS } from '@/constants/suburbs';
+import { theme } from '@/theme';
+import { RootStackParamList, Suburb } from '@/types';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Profile'>;

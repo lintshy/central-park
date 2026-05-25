@@ -10,10 +10,10 @@ import {
   View,
 } from 'react-native';
 
-import { SectionLabel } from '../../../components/SectionLabel';
-import { UserAvatarButton } from '../../../components/UserAvatarButton';
-import { theme } from '../../../theme';
-import { RootStackParamList } from '../../../types';
+import { SectionLabel } from '@/components/SectionLabel';
+import { UserAvatarButton } from '@/components/UserAvatarButton';
+import { theme } from '@/theme';
+import { RootStackParamList } from '@/types';
 import { AddressWidget } from './AddressWidget';
 import { MapPreview } from './MapPreview';
 import { MenuItemCard } from './MenuItemCard';

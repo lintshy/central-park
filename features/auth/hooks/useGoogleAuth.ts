@@ -3,7 +3,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { useCallback, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
-import { logger } from '../../../lib/logger';
+import { logger } from '@/lib/logger';
 import { useAuthStore } from '../store/authStore';
 import { fetchGoogleUser } from '../services/authService';
 

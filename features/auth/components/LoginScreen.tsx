@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-import { theme } from '../../../theme';
+import { theme } from '@/theme';
 import { useGoogleAuth } from '../hooks/useGoogleAuth';
 
 export function LoginScreen(): React.JSX.Element {

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import type MapViewType from 'react-native-maps';
+import type { Marker as MarkerType } from 'react-native-maps';
 
-import { theme } from '../../../theme';
+import { theme } from '@/theme';
 
 interface Props {
   latitude: number;
@@ -21,10 +23,9 @@ export function MapPreview({ latitude, longitude, title, accentColor }: Props): 
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let RNMapView: any = null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let Marker: any = null;
+  // Lazy-require so the app doesn't crash if react-native-maps isn't linked
+  let RNMapView: typeof MapViewType;
+  let Marker: typeof MarkerType;
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const maps = require('react-native-maps');

@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 
-import { ApiError } from '../../../lib/errors';
-import { Suburb } from '../../../types';
+import { ApiError } from '@/lib/errors';
+import { Suburb } from '@/types';
 import { AuthUser } from '../types';
 
 const CURRENT_SESSION_KEY = 'current_session';
